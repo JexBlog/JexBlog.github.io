@@ -86,17 +86,17 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="常用命令： 1234567891011121314151617181920212223242526&#x2F;&#x2F; 安装Hexonpm install hexo -g &#x2F;&#x2F; 升级npm update hexo -g &#x2F;&#x2F; 初始化博客hexo init&#x2F;&#x2F; 新建文章hexo n &quot;我的博客&quot; &#x3D;&#x3D; hexo new &quot;我的博客&quot; &#x2F;&#x2F; 生成hexo g &#x3D;&#x3D; hexo generate&#x2F;&#x2F; 启动服务预览hexo">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1578855512126.png">
-<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1578856057434.png">
+<meta property="og:image" content="http://typora-image.oss-cn-shenzhen.aliyuncs.com/typora/20200223223441-976427.png">
+<meta property="og:image" content="http://typora-image.oss-cn-shenzhen.aliyuncs.com/typora/20200223223249-71789.png">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1578856126715.png">
-<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1578855992247.png">
+<meta property="og:image" content="http://typora-image.oss-cn-shenzhen.aliyuncs.com/typora/20200223223541-179746.png">
 <meta property="og:image" content="http://yoursite.com/2020/01/13/Hexo-Git%E5%8D%81%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5">
 <meta property="article:published_time" content="2020-01-13T02:57:54.000Z">
-<meta property="article:modified_time" content="2020-01-13T03:00:40.043Z">
+<meta property="article:modified_time" content="2020-02-23T14:47:48.216Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1578855512126.png">
+<meta name="twitter:image" content="http://typora-image.oss-cn-shenzhen.aliyuncs.com/typora/20200223223441-976427.png">
 
 
 
@@ -325,16 +325,16 @@
 
 <p>完成后，打开浏览器，在地址栏输入你的放置个人网站的仓库路径，即<br><code>xxx.github.io</code><br>（github page的地址）<br>就可以访问了。</p>
 <h4 id="配置个性域名"><a href="#配置个性域名" class="headerlink" title="配置个性域名"></a>配置个性域名</h4><p>虽然在Internet上可以访问我们的网站，但是网址是GitHub提供的: <a href="http://xxxx.github.io" target="_blank" rel="noopener">http://xxxx.github.io</a><br>而我们想使用我们自己的个性化域名，这就需要绑定我们自己的域名。登录到阿里云，进入管理控制台的域名列表，找到你的个性化域名，进入解析</p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1578855512126.png" alt="1578855512126"></p>
+<p><img src="http://typora-image.oss-cn-shenzhen.aliyuncs.com/typora/20200223223441-976427.png" alt="1578855512126"></p>
 <p>第二步，登录GitHub，进入之前创建的仓库，点击settings，设置Custom domain，输入你的域名：</p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1578856057434.png" alt="1578856057434"></p>
+<p><img src="http://typora-image.oss-cn-shenzhen.aliyuncs.com/typora/20200223223249-71789.png" alt="1578856057434"></p>
 <p>第三步，进入本地博客文件夹 ，进入blog/source目录下，创建一个记事本文件，输入你的域名，保存，命名为CNAME ，注意保存成所有文件而不是txt文件。</p>
 <p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1578856126715.png" alt="1578856126715"></p>
 <p>完成之后进入项目根目录中，打开命令行，依次输入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
 <p>这时候打开浏览器在地址栏输入你的个性化域名将会直接进入你自己搭建的网站</p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1578855992247.png" alt="1578855992247"></p>
+<p><img src="http://typora-image.oss-cn-shenzhen.aliyuncs.com/typora/20200223223541-179746.png" alt="1578855992247"></p>
 <h4 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h4><p>如果你不喜欢Hexo默认的主题，可以更换不同的主题，主题传送门：<a href="https://link.zhihu.com/?target=https%3A//hexo.io/themes/">Themes</a></p>
 <p>我自己使用的是Next主题，可以在blog目录中的themes文件夹中查看你自己主题是什么。现在把默认主题更改成Next主题，在blog目录中（就是命令行的位置处于blog目录）打开命令行输入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
@@ -467,7 +467,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -480,7 +480,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
