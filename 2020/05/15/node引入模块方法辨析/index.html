@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="列举常见导出引入模块的方式导出： export export default module.exports exports  引入：require import 导出module.exports 和 exports在node的模块里，可以直接调用 exports 和 module 两个全局变量，但 exports 是 module.exports 的一个引用。require 引用模块后，返回的是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS导出引入模块方法辨析">
+<meta property="og:url" content="http://yoursite.com/2020/05/15/node%E5%BC%95%E5%85%A5%E6%A8%A1%E5%9D%97%E6%96%B9%E6%B3%95%E8%BE%A8%E6%9E%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="列举常见导出引入模块的方式导出： export export default module.exports exports  引入：require import 导出module.exports 和 exports在node的模块里，可以直接调用 exports 和 module 两个全局变量，但 exports 是 module.exports 的一个引用。require 引用模块后，返回的是">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-15T04:04:45.000Z">
+<meta property="article:modified_time" content="2020-05-15T06:16:43.375Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="node">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/15/node引入模块方法辨析/"/>
+
+
+
+
+
+  <title>JS导出引入模块方法辨析 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/15/node%E5%BC%95%E5%85%A5%E6%A8%A1%E5%9D%97%E6%96%B9%E6%B3%95%E8%BE%A8%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS导出引入模块方法辨析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-15T12:04:45+08:00">
+                2020-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="列举常见导出引入模块的方式"><a href="#列举常见导出引入模块的方式" class="headerlink" title="列举常见导出引入模块的方式"></a>列举常见导出引入模块的方式</h3><p>导出： <code>export</code> <code>export default</code> <code>module.exports</code> <code>exports</code> </p>
+<p>引入：<code>require</code> <code>import</code></p>
+<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><h4 id="module-exports-和-exports"><a href="#module-exports-和-exports" class="headerlink" title="module.exports 和 exports"></a>module.exports 和 exports</h4><p>在node的模块里，可以直接调用 exports 和 module 两个全局变量，但 exports 是 module.exports 的一个引用。<br>require 引用模块后，返回的是 module.exports 而不是 exports。</p>
+<p>如果 <code>exports = function(){};</code> 这样就是重新给 exports 赋值，它将不再是 module.exports 的引用，二者将无任何联系。</p>
+<p>避免混淆，建议不用 exports 直接用 module.exports。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exports = <span class="built_in">module</span>.exports = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="export-default-和-export"><a href="#export-default-和-export" class="headerlink" title="export default 和 export"></a>export default 和 export</h4><p>export default 与 export 均可用于导出常量、函数、文件、模块等。</p>
+<p>在一个文件或模块中，export、import 可以有多个，export default 仅有一个。</p>
+<p>通过 export 方式导出，在导入时要加 { }，export default 则不需要。</p>
+<p>export 能直接导出变量表达式，export default 不行。</p>
+<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><h4 id="require"><a href="#require" class="headerlink" title="require"></a>require</h4><p>require 是运行时，可以放在任何地方。require 相当于 module.exports 的传送门，module.exports 后面的内容是什么，require的结果就是什么。</p>
+<h4 id="import"><a href="#import" class="headerlink" title="import"></a>import</h4><p>import 是编译时，必须放在文件开头。它不会将整个模块运行后赋值给某个变量，而是只选择import 的接口进行编译，这样在性能上比 require 好一些。</p>
+<h3 id="辨析"><a href="#辨析" class="headerlink" title="辨析"></a>辨析</h3><p>Node和浏览器端所支持的模块规范不同。</p>
+<table>
+<thead>
+<tr>
+<th>条目</th>
+<th>Node</th>
+<th>浏览器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>模块规范</td>
+<td>CommonJS</td>
+<td>ES6</td>
+</tr>
+<tr>
+<td>导出</td>
+<td>modules.exports; exports</td>
+<td>export; export default</td>
+</tr>
+<tr>
+<td>引入</td>
+<td>require</td>
+<td>import; require</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/26/%E6%92%B8%E7%A0%81%E6%97%A5%E8%AE%B0/" rel="next" title="撸码日记">
+                <i class="fa fa-chevron-left"></i> 撸码日记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#列举常见导出引入模块的方式"><span class="nav-number">1.</span> <span class="nav-text">列举常见导出引入模块的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出"><span class="nav-number">2.</span> <span class="nav-text">导出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#module-exports-和-exports"><span class="nav-number">2.1.</span> <span class="nav-text">module.exports 和 exports</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#export-default-和-export"><span class="nav-number">2.2.</span> <span class="nav-text">export default 和 export</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入"><span class="nav-number">3.</span> <span class="nav-text">导入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#require"><span class="nav-number">3.1.</span> <span class="nav-text">require</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#import"><span class="nav-number">3.2.</span> <span class="nav-text">import</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辨析"><span class="nav-number">4.</span> <span class="nav-text">辨析</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

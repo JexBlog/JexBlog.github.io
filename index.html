@@ -229,6 +229,284 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/15/node%E5%BC%95%E5%85%A5%E6%A8%A1%E5%9D%97%E6%96%B9%E6%B3%95%E8%BE%A8%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/15/node%E5%BC%95%E5%85%A5%E6%A8%A1%E5%9D%97%E6%96%B9%E6%B3%95%E8%BE%A8%E6%9E%90/" itemprop="url">JS导出引入模块方法辨析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-15T12:04:45+08:00">
+                2020-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="列举常见导出引入模块的方式"><a href="#列举常见导出引入模块的方式" class="headerlink" title="列举常见导出引入模块的方式"></a>列举常见导出引入模块的方式</h3><p>导出： <code>export</code> <code>export default</code> <code>module.exports</code> <code>exports</code> </p>
+<p>引入：<code>require</code> <code>import</code></p>
+<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><h4 id="module-exports-和-exports"><a href="#module-exports-和-exports" class="headerlink" title="module.exports 和 exports"></a>module.exports 和 exports</h4><p>在node的模块里，可以直接调用 exports 和 module 两个全局变量，但 exports 是 module.exports 的一个引用。<br>require 引用模块后，返回的是 module.exports 而不是 exports。</p>
+<p>如果 <code>exports = function(){};</code> 这样就是重新给 exports 赋值，它将不再是 module.exports 的引用，二者将无任何联系。</p>
+<p>避免混淆，建议不用 exports 直接用 module.exports。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exports = <span class="built_in">module</span>.exports = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="export-default-和-export"><a href="#export-default-和-export" class="headerlink" title="export default 和 export"></a>export default 和 export</h4><p>export default 与 export 均可用于导出常量、函数、文件、模块等。</p>
+<p>在一个文件或模块中，export、import 可以有多个，export default 仅有一个。</p>
+<p>通过 export 方式导出，在导入时要加 { }，export default 则不需要。</p>
+<p>export 能直接导出变量表达式，export default 不行。</p>
+<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><h4 id="require"><a href="#require" class="headerlink" title="require"></a>require</h4><p>require 是运行时，可以放在任何地方。require 相当于 module.exports 的传送门，module.exports 后面的内容是什么，require的结果就是什么。</p>
+<h4 id="import"><a href="#import" class="headerlink" title="import"></a>import</h4><p>import 是编译时，必须放在文件开头。它不会将整个模块运行后赋值给某个变量，而是只选择import 的接口进行编译，这样在性能上比 require 好一些。</p>
+<h3 id="辨析"><a href="#辨析" class="headerlink" title="辨析"></a>辨析</h3><p>Node和浏览器端所支持的模块规范不同。</p>
+<table>
+<thead>
+<tr>
+<th>条目</th>
+<th>Node</th>
+<th>浏览器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>模块规范</td>
+<td>CommonJS</td>
+<td>ES6</td>
+</tr>
+<tr>
+<td>导出</td>
+<td>modules.exports; exports</td>
+<td>export; export default</td>
+</tr>
+<tr>
+<td>引入</td>
+<td>require</td>
+<td>import; require</td>
+</tr>
+</tbody></table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/26/%E6%92%B8%E7%A0%81%E6%97%A5%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/26/%E6%92%B8%E7%A0%81%E6%97%A5%E8%AE%B0/" itemprop="url">撸码日记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-26T00:51:34+08:00">
+                2020-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2020-02-26 00:51:34</span><br><span class="line">今晚在想项目如何重构才让自己感觉舒服些。</span><br><span class="line">但也在想，重构是为了解决什么问题？有必要现在重构吗？</span><br><span class="line">目前存在的问题：</span><br><span class="line">1. 嵌入Terminal，达到可运行的目的；</span><br><span class="line">2. 页面UI优化，按需求更改现有的UI：</span><br><span class="line">   存在的问题是，将之前全局的Tabs改成局部的，涉及到路由的跳转；Tabs与菜单栏的聚焦；</span><br><span class="line">3. 如果要实现一键换肤，要如何实现？这个架构该如何管理样式？（不紧急）</span><br><span class="line"></span><br><span class="line">所以现在不需要重构项目，样式管理可留在下一个版本思考。但对UI的改动需要思考路由跳转逻辑，以及Tabs与菜单栏的聚焦。明天下午接入Terminal。</span><br><span class="line">那么Terminal就留给明天，今晚干今晚的事情！奥利给！</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/24/%E6%96%AD%E8%88%8D%E7%A6%BB%E4%B9%8B%E3%80%8A%E5%A6%82%E5%85%89%E5%BD%B1%E5%B8%B8%E5%9C%A8%E3%80%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -304,8 +582,7 @@
 <p>《如光影常在》，作者张小溪，购于2015年。最初接触理想纯粹的人大概是她，源于高三暑假，我非常喜欢她的插画风格，非常认可她对生活对待的态度。这本书是作为记录张小溪个人风格与美学成长的一个项目，里面穿插着大量色彩迥异，风格多变的插画，同时也记录了作者对于生活的一些思考。</p>
 <p>本文单纯摘录和记录读后感。</p>
 <hr>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>01 色彩哲学  |  02 纯真地优雅着  |  03 东方印记  |  04 最好的时光  |  05 一种风格 一个故事  |  06 流动的美术馆  </p>
-<p>07 春夏秋冬 风花雪月  |  08 最重要的是一直画下去  |  09 后记</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>01 色彩哲学  |  02 纯真地优雅着  |  03 东方印记  |  04 最好的时光  |  05 一种风格 一个故事  |  06 流动的美术馆  |  07 春夏秋冬 风花雪月  |  08 最重要的是一直画下去  |  09 后记</p>
 <hr>
 <h5 id="色彩哲学"><a href="#色彩哲学" class="headerlink" title="色彩哲学"></a>色彩哲学</h5><p>黑白：</p>
 <pre><code>&quot;黑与白的时尚终将继续，就像光与影在生活中始终存在一样天经地义。&quot;
@@ -787,7 +1064,7 @@ Feeling：青春大多数的烦恼不断困扰着当时的我们，却又总在�
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -800,7 +1077,7 @@ Feeling：青春大多数的烦恼不断困扰着当时的我们，却又总在�
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
